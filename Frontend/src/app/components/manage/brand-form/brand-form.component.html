@@ -1,0 +1,51 @@
+<div class="flex flex-col px-10 sm:px-20 mt-10 items-center">
+  <h1
+    class="text-3xl font-semibold mb-6 text-center text-gray-800"
+    [ngSwitch]="isEdit"
+  >
+    <span *ngSwitchCase="true">Update Brand</span>
+    <span *ngSwitchDefault>Add New Brand</span>
+  </h1>
+  <form
+    class="shadow-lg w-full sm:w-96 p-6 bg-white rounded-lg border border-gray-200"
+  >
+    <div class="space-y-4">
+      <div class="w-full">
+        <mat-form-field class="w-full">
+          <mat-label class="text-gray-700">Brand Name</mat-label>
+          <input
+            matInput
+            type="text"
+            [(ngModel)]="name"
+            name="name"
+            class="p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+            placeholder="Enter brand name"
+          />
+        </mat-form-field>
+      </div>
+      <div class="w-full flex justify-center">
+        <div [ngSwitch]="isEdit">
+          <button
+            mat-raised-button
+            color="primary"
+            (click)="add()"
+            [disabled]="!name"
+            *ngSwitchDefault
+            class="w-full py-3 text-white bg-blue-600 rounded-md hover:bg-blue-700 focus:ring-2 focus:ring-blue-300 transition duration-200"
+          >
+            Add Brand
+          </button>
+          <button
+            *ngSwitchCase="true"
+            mat-raised-button
+            color="primary"
+            (click)="update()"
+            class="w-full py-3 text-white bg-green-600 rounded-md hover:bg-green-700 focus:ring-2 focus:ring-green-300 transition duration-200"
+          >
+            Update Brand
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

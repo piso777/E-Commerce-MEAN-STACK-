@@ -1,0 +1,99 @@
+<div class="px-8 md:px-20">
+  <!-- Brands Carousel Section -->
+  <div id="brandsCarousel" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button
+        *ngFor="let product of brandsImages; let i = index"
+        type="button"
+        [attr.data-bs-target]="'#brandsCarousel'"
+        [attr.data-bs-slide-to]="i"
+        [class.active]="i === 0"
+        class="bg-gray-400 hover:bg-blue-600 transition-all duration-300"
+      ></button>
+    </div>
+
+    <div class="carousel-inner">
+      <div
+        *ngFor="let product of brandsImages; let i = index"
+        class="carousel-item"
+        [class.active]="i === 0"
+      >
+        <img
+          [src]="product.images[0]"
+          class="d-block w-full object-cover rounded-lg shadow-lg"
+          alt="{{ product.name }}"
+        />
+        <div
+          class="carousel-caption text-start bg-opacity-50 bg-slate-600 p-4 rounded-lg"
+        >
+          <h3 class="text-2xl font-semibold text-white">{{ product.name }}</h3>
+          <a
+            [routerLink]="'/products/' + product._id"
+            class="btn btn-primary mt-3 rounded-full px-6 py-2 bg-indigo-600 hover:bg-indigo-700 text-white transition-all duration-300"
+          >
+            Learn More
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <button
+      class="carousel-control-prev"
+      type="button"
+      data-bs-target="#brandsCarousel"
+      data-bs-slide="prev"
+    >
+      <span class="carousel-control-prev-icon bg-blue-600 rounded-full"></span>
+    </button>
+    <button
+      class="carousel-control-next"
+      type="button"
+      data-bs-target="#brandsCarousel"
+      data-bs-slide="next"
+    >
+      <span class="carousel-control-next-icon bg-blue-600 rounded-full"></span>
+    </button>
+  </div>
+
+  <!-- Featured Products Section -->
+  <div class="mt-12">
+    <h4 class="text-4xl font-bold mb-6 text-center text-blue-500">
+      Featured Products
+    </h4>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <app-product-card
+        *ngFor="let product of featuredProducts"
+        [product]="product"
+      ></app-product-card>
+    </div>
+    <div class="mt-6 text-center">
+      <a
+        [routerLink]="'/featured'"
+        class="btn bg-yellow-500 hover:bg-yellow-600 text-white rounded-full px-8 py-3 transition duration-300"
+      >
+        Explore Featured
+      </a>
+    </div>
+  </div>
+
+  <!-- New Products Section -->
+  <div class="mt-12 mb-8">
+    <h4 class="text-4xl font-bold mb-6 text-center text-blue-500">
+      New Products
+    </h4>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <app-product-card
+        *ngFor="let product of newProducts"
+        [product]="product"
+      ></app-product-card>
+    </div>
+    <div class="mt-6 text-center">
+      <a
+        [routerLink]="'/new'"
+        class="btn bg-green-500 hover:bg-green-600 text-white rounded-full px-8 py-3 transition duration-300"
+      >
+        Explore New
+      </a>
+    </div>
+  </div>
+</div>

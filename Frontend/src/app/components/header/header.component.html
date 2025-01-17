@@ -1,0 +1,104 @@
+<div
+  class="bg-gradient-to-r from-blue-500 to-teal-500 text-white flex items-center justify-between px-8 py-4"
+>
+  <!-- Logo Section -->
+  <div class="text-2xl font-extrabold mr-4 cursor-pointer" routerLink="/">
+    Piso_Shop
+  </div>
+
+  <!-- Categories and Search Section -->
+  <div class="flex items-center justify-center space-x-6 flex-grow">
+    <nav *ngIf="isLoggedIn" class="flex space-x-4">
+      <a
+        *ngFor="let category of categories"
+        class="cursor-pointer hover:text-blue-200 transition duration-300"
+        (click)="searchCategory(category._id!)"
+      >
+        {{ category.name }}
+      </a>
+    </nav>
+    <div class="flex flex-grow justify-center items-center">
+      <input
+        *ngIf="isLoggedIn"
+        type="text"
+        placeholder="Search..."
+        class="w-full max-w-lg p-2 rounded-lg bg-white text-black outline-none shadow-md focus:ring-2 focus:ring-blue-400"
+        (keyup.enter)="onSearch($event)"
+        [(ngModel)]="searchTerm"
+      />
+    </div>
+  </div>
+
+  <!-- User and Auth Links Section -->
+  <div class="text-lg flex items-center space-x-4">
+    <!-- Admin Link -->
+    <a
+      class="ml-2"
+      *ngIf="isAdmin"
+      routerLink="/admin"
+      class="hover:text-blue-300 transition duration-300"
+      >{{ userName }}</a
+    >
+
+    <!-- User Profile Link -->
+    <a
+      class="ml-2"
+      *ngIf="isLoggedIn && !isAdmin"
+      routerLink="/profile"
+      class="hover:text-blue-300 transition duration-300"
+    >
+      {{ userName }}
+    </a>
+
+    <!-- Wishlist and Cart Links -->
+    <a
+      class="ml-2"
+      *ngIf="isLoggedIn && !isAdmin"
+      routerLink="/wishlist"
+      class="hover:text-blue-300 transition duration-300"
+      >Wishlist</a
+    >
+    <a
+      class="ml-2"
+      *ngIf="isLoggedIn && !isAdmin"
+      routerLink="/cart"
+      class="flex items-center hover:text-blue-300 transition duration-300"
+    >
+      <mat-icon class="pt-1">shopping_cart</mat-icon>Cart
+    </a>
+
+    <!-- Orders Link -->
+    <a
+      class="ml-2"
+      *ngIf="isLoggedIn && !isAdmin"
+      routerLink="/orders"
+      class="hover:text-blue-300 transition duration-300"
+      >Orders</a
+    >
+
+    <!-- Logout Link -->
+    <a
+      class="ml-2"
+      (click)="logout()"
+      *ngIf="isLoggedIn"
+      class="hover:text-red-500 transition duration-300"
+      >Logout</a
+    >
+
+    <!-- Login and Register Links -->
+    <a
+      class="ml-2"
+      routerLink="/login"
+      *ngIf="!isLoggedIn"
+      class="hover:text-blue-300 transition duration-300"
+      >Login</a
+    >
+    <a
+      class="ml-2"
+      routerLink="/register"
+      *ngIf="!isLoggedIn"
+      class="hover:text-blue-300 transition duration-300"
+      >Register</a
+    >
+  </div>
+</div>

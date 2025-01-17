@@ -1,0 +1,107 @@
+<div class="px-8 sm:px-16 mt-10">
+  <div class="flex justify-between items-center mb-6">
+    <h1 class="text-3xl sm:text-4xl font-bold text-gray-800">
+      Manage Category
+    </h1>
+    <button
+      mat-raised-button
+      color="primary"
+      routerLink="/admin/categories/add"
+      class="px-6 py-2 rounded-md text-white bg-blue-600 hover:bg-blue-700 transition duration-200"
+    >
+      Add New Category
+    </button>
+  </div>
+
+  <div class="shadow-lg rounded-lg bg-white p-6 mt-4">
+    <mat-form-field class="w-full mb-6">
+      <mat-label class="text-gray-600">Filter</mat-label>
+      <input
+        matInput
+        (keyup)="applyFilter($event)"
+        placeholder="Search by name..."
+        #input
+        class="p-3 border border-gray-300 rounded-md w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
+      />
+    </mat-form-field>
+
+    <table
+      mat-table
+      [dataSource]="dataSource"
+      matSort
+      class="min-w-full text-sm"
+    >
+      <!-- ID Column -->
+      <ng-container matColumnDef="id">
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          mat-sort-header
+          class="bg-gray-200 text-gray-700 font-semibold p-2"
+        >
+          ID
+        </th>
+        <td mat-cell *matCellDef="let row" class="p-2">{{ row._id }}</td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          mat-sort-header
+          class="bg-gray-200 text-gray-700 font-semibold p-2"
+        >
+          Name
+        </th>
+        <td mat-cell *matCellDef="let row" class="p-2">{{ row.name }}</td>
+      </ng-container>
+
+      <!-- Action Column -->
+      <ng-container matColumnDef="action">
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          mat-sort-header
+          class="bg-gray-200 text-gray-700 font-semibold p-2"
+        >
+          Action
+        </th>
+        <td mat-cell *matCellDef="let row" class="p-2">
+          <button
+            mat-raised-button
+            color="primary"
+            class="mr-4 bg-blue-500 hover:bg-blue-600 text-white"
+            [routerLink]="'/admin/categories/' + row._id"
+          >
+            Edit
+          </button>
+          <button
+            mat-raised-button
+            color="warn"
+            class="bg-red-500 hover:bg-red-600 text-white"
+            (click)="delete(row._id)"
+          >
+            Delete
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+      <!-- Row shown when there is no matching data. -->
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="4" class="text-center py-4 text-gray-500">
+          No data matching the filter "{{ input.value }}"
+        </td>
+      </tr>
+    </table>
+
+    <mat-paginator
+      [pageSizeOptions]="[5, 10, 25, 100]"
+      aria-label="Select"
+      class="mt-6"
+    ></mat-paginator>
+  </div>
+</div>

@@ -1,0 +1,68 @@
+.admin-card {
+  flex: 1 1 220px; /* Ensures each card is responsive */
+  padding: 20px;
+  background-color: #fff;
+  color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.admin-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+.admin-card .icon {
+  font-size: 3rem;
+  margin-bottom: 15px;
+}
+
+.admin-card h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.admin-card p {
+  font-size: 0.875rem;
+  opacity: 0.8;
+  margin-bottom: 20px;
+}
+
+.admin-card button {
+  padding: 10px 20px;
+  background-color: white;
+  color: inherit;
+  font-weight: bold;
+  border-radius: 4px;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+.admin-card button:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* Specific color adjustments for each card button */
+.admin-card.bg-blue-500 button {
+  color: #1D4ED8; /* blue */
+}
+
+.admin-card.bg-green-500 button {
+  color: #10B981; /* green */
+}
+
+.admin-card.bg-purple-500 button {
+  color: #6B21A8; /* purple */
+}
+
+.admin-card.bg-red-500 button {
+  color: #EF4444; /* red */
+}
